@@ -28,21 +28,22 @@ const Header = () => {
     navigate(`/athletes/search?name=${data.name}`);
   };
 
-  const logout = async () => {
-    await client.post("/api/auth/logout");
-    navigate("/login");
+  const logout = () => {
+    client.post("/api/auth/logout");
+    localStorage.removeItem("user");
+    navigate("/");
+    setUser("");
   };
 
   const onLogout = useCallback(() => {
     mutate();
-    localStorage.removeItem("user");
   }, [mutate]);
 
   return (
     <div className="fixed top-0 left-0 w-full border-b bg-white z-10">
       <div className="max-w-6xl h-20 m-auto flex items-center justify-between">
         <Link to="/" className="text-2xl">
-          suji <span className="font-bold">sam</span>
+          suji<span className="font-bold">sam</span>
         </Link>
         <div className="flex items-center">
           <form

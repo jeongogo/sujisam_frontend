@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import React, { useState, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "react-query";
 import client from "../../lib/api/client";
 import MeasureMonitoringWrite from "../../components/measure/MonitoringWrite";
-import MeasurePeriodicgWrite from "../../components/measure/PeriodicgWrite";
+import MeasurePeriodicWrite from "../../components/measure/PeriodicWrite";
 import Loader from "../../components/common/Loader";
 
 const MeasureWriteContainer = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [active, setActive] = useState("monitoring");
 
-  const { id } = useParams();
+  const onChangeMeasure = (text) => {
+    setActive(text);
+  };
 
   const getAthlete = async () => {
     const res = await client.get(`/api/athletes/${id}`);
@@ -18,6 +22,42 @@ const MeasureWriteContainer = () => {
 
   const { isLoading, data, error } = useQuery("athleteDetail", getAthlete);
 
+  const writeMonitoring = async (data) => {
+    const res = await client.post(`/api/athletes/${id}/write/monitoring`, data);
+    if (res.status === 200) {
+      navigate(`/athletes/${id}/view`);
+    }
+  };
+
+  const writePeriodic = async (data) => {
+    const res = await client.post(`/api/athletes/${id}/write/periodic`, data);
+    if (res.status === 200) {
+      navigate(`/athletes/${id}/view`);
+    }
+  };
+
+  const { mutate: mutateMonitoring } = useMutation((data) => {
+    writeMonitoring(data);
+  });
+
+  const { mutate: mutatePeriodic } = useMutation((data) => {
+    writePeriodic(data);
+  });
+
+  const onSumitMonitoring = useCallback(
+    (data) => {
+      mutateMonitoring(data);
+    },
+    [mutateMonitoring]
+  );
+
+  const onSumitPeriodic = useCallback(
+    (data) => {
+      mutatePeriodic(data);
+    },
+    [mutatePeriodic]
+  );
+
   if (isLoading) {
     return <Loader />;
   }
@@ -25,14 +65,6 @@ const MeasureWriteContainer = () => {
   if (error) {
     return <div>error</div>;
   }
-
-  const onChangeMeasure = (text) => {
-    setActive(text);
-  };
-
-  const onSumitMonitoring = (data) => {
-    console.log(data);
-  };
 
   return (
     <div className="max-w-6xl m-auto mt-8 py-6 relative">
@@ -60,9 +92,9 @@ const MeasureWriteContainer = () => {
         </div>
       </div>
       {active === "monitoring" ? (
-        <MeasureMonitoringWrite onSumitMonitoring={onSumitMonitoring} />
+        <MeasureMonitoringWrite onSumitMeasure={onSumitMonitoring} />
       ) : (
-        <MeasurePeriodicgWrite />
+        <MeasurePeriodicWrite onSumitMeasure={onSumitPeriodic} />
       )}
     </div>
   );

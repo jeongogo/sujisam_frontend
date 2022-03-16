@@ -13,3 +13,7 @@ body {
 button {
   transition: all 0.1s;
 }
+
+input:disabled {
+  background-color: #f6f6f6;
+}

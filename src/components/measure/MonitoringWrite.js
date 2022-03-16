@@ -1,25 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 
-const MonitoringWrite = ({ onSumitMonitoring }) => {
-  const [date, setDate] = useState();
+const MonitoringWrite = ({ onSumitMeasure }) => {
+  const { register, handleSubmit } = useForm();
 
-  const onChangeDate = (e) => {
-    setDate(e.target.value);
-  };
-
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      date: date,
-    },
-  });
-
-  const onSubmit = (data) => onSumitMonitoring(data);
+  const onSubmit = (data) => onSumitMeasure(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <div className="absolute top-8 right-0">
-        <input type="date" onChange={onChangeDate} />
+        <input type="date" {...register("date")} />
       </div>
       <div className="grid grid-cols-3 gap-6 mt-12 pb-10">
         <div className="py-8 px-8 bg-white shadow-3xl rounded-3xl">

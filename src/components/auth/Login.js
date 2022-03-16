@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Login = ({ onSubmit }) => {
+const Login = ({ onSubmit, error }) => {
   const {
     register,
     handleSubmit,
@@ -15,7 +15,7 @@ const Login = ({ onSubmit }) => {
       <form onSubmit={handleSubmit(onLogin)} autoComplete="off">
         <ul className="max-w-xl m-auto">
           <li className="flex items-start py-3">
-            <label className="w-32 text-right text-lg mr-4 pt-1">이름</label>
+            <label className="w-32 text-right text-lg mr-4 pt-1">아이디</label>
             <div className="w-full">
               <input
                 type="text"
@@ -47,6 +47,9 @@ const Login = ({ onSubmit }) => {
             </div>
           </li>
         </ul>
+        <div className="flex justify-center mt-4 pl-8 text-red-500">
+          {error}
+        </div>
         <div className="flex justify-center mt-8 pl-8">
           <button type="submit" className="w-40 h-12 rounded-3xl bg-yellow-400">
             로그인
