@@ -10,10 +10,12 @@ const MeasureViewContainer = () => {
   const { id } = useParams();
   const [active, setActive] = useState("monitoring");
 
+  // Tab Change
   const onChangeMeasure = (text) => {
     setActive(text);
   };
 
+  // Get Athlete
   const getAthlete = async () => {
     const res = await client.get(`/api/athletes/${id}`);
     return res.data;
@@ -30,7 +32,7 @@ const MeasureViewContainer = () => {
   }
 
   return (
-    <div className="max-w-6xl m-auto mt-8 py-6 relative">
+    <div className="max-w-6xl m-auto mt-8 py-6 px-4 relative">
       <div className="flex justify-center relative">
         <h1 className="text-3xl">{data.name}</h1>
         <div className="btn-group absolute left-0 top-0">

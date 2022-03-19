@@ -8,7 +8,7 @@ const MonitoringWrite = ({ onSumitMeasure }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-      <div className="absolute top-8 right-0">
+      <div className="absolute top-8 right-4">
         <input type="date" {...register("date")} />
       </div>
       <div className="grid grid-cols-3 gap-6 mt-12 pb-10">

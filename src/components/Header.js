@@ -1,47 +1,32 @@
-import React, { useEffect, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
 import { useForm } from "react-hook-form";
-import client from "../lib/api/client";
 import { GoSearch } from "react-icons/go";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 
-const Header = () => {
+const Header = ({ user, onLogout }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState();
 
-  useEffect(() => {
-    setUser(localStorage.getItem("user"));
-  }, []);
-
-  const { mutate } = useMutation(() => {
-    logout();
-  });
-
+  // Form
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  // Search
   const onSearch = (data) => {
     navigate(`/athletes/search?name=${data.name}`);
   };
 
-  const logout = () => {
-    client.post("/api/auth/logout");
-    localStorage.removeItem("user");
+  // Submit Logout
+  const onSubmitLogout = () => {
+    onLogout();
     navigate("/");
-    setUser("");
   };
-
-  const onLogout = useCallback(() => {
-    mutate();
-  }, [mutate]);
 
   return (
     <div className="fixed top-0 left-0 w-full border-b bg-white z-10">
-      <div className="max-w-6xl h-20 m-auto flex items-center justify-between">
+      <div className="max-w-6xl h-20 m-auto px-4 flex items-center justify-between">
         <Link to="/" className="text-2xl">
           suji<span className="font-bold">sam</span>
         </Link>
@@ -62,7 +47,11 @@ const Header = () => {
             </button>
           </form>
           {user ? (
-            <button type="button" onClick={onLogout} className="text-2xl ml-4">
+            <button
+              type="button"
+              onClick={onSubmitLogout}
+              className="text-2xl ml-4"
+            >
               <FiLogOut />
             </button>
           ) : (

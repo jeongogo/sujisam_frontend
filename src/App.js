@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import useStore from "./modules/store";
 import HomePage from "./pages/Home.page";
 import LoginPage from "./pages/auth/Login.page";
 import AthletesPage from "./pages/athlete/Athletes.page";
@@ -11,13 +10,6 @@ import MeasureViewPage from "./pages/measure/View.page";
 import "./tailwind.css";
 
 function App() {
-  const store_user = useStore((state) => state.user);
-  const local_user = JSON.parse(localStorage.getItem("user_setting")).state
-    .user;
-  const setUser = useStore((state) => state.setUser);
-
-  if (store_user === null && local_user) setUser(local_user);
-
   return (
     <div className="App">
       <BrowserRouter>
