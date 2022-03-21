@@ -99,6 +99,16 @@ const AthleteRegister = ({ onSubmit }) => {
                 className="border-b border-gray-300 focus:border-yellow-400 outline-none w-full py-1 px-2  "
               >
                 <option value="축구">축구</option>
+                <option value="농구">농구</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
               </select>
               {errors.sports && (
                 <div className="w-full mt-2 text-xs text-red-500">
