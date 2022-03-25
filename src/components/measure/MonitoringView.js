@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -9,50 +8,52 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import Palette from "../../lib/styles/Palette";
 
 const MonitoringView = ({ monitoring }) => {
-  const [vas, setVas] = useState([]);
-  const [cmj, setCmj] = useState([]);
-  const [stiffness_jump, setStiffness_jump] = useState([]);
-
-  useEffect(() => {
-    if (monitoring.length > 1) {
-      monitoring.forEach((item) => {
-        setVas([
-          ...vas,
-          {
-            date: item.date,
-            sleep_time: item.vas.sleep_time,
-            sleep_quality: item.vas.sleep_quality,
-            fatigue: item.vas.fatigue,
-            muscle_soreness: item.vas.muscle_soreness,
-            stress_level: item.vas.stress_level,
-            mood: item.vas.mood,
-            pain: item.vas.pain,
-          },
-        ]);
-        setCmj([
-          ...cmj,
-          {
-            date: item.date,
-            jump_height_max: item.performance.cmj.jump_height_max,
-            jump_height_average: item.performance.cmj.jump_height_average,
-          },
-        ]);
-        setStiffness_jump([
-          ...stiffness_jump,
-          {
-            date: item.date,
-            jump_height_max: item.performance.stiffness_jump.jump_height_max,
-            jump_height_average:
-              item.performance.stiffness_jump.jump_height_average,
-            rsi_max: item.performance.stiffness_jump.rsi_max,
-            rsi_average: item.performance.stiffness_jump.rsi_average,
-          },
-        ]);
-      });
+  const vas = monitoring.map((item) => {
+    let data = null;
+    if (item.hasOwnProperty("vas")) {
+      data = {
+        date: item.date,
+        sleep_time: item.vas.sleep_time,
+        sleep_quality: item.vas.sleep_quality,
+        fatigue: item.vas.fatigue,
+        muscle_soreness: item.vas.muscle_soreness,
+        stress_level: item.vas.stress_level,
+        mood: item.vas.mood,
+        pain: item.vas.pain,
+      };
     }
-  }, []);
+    return data;
+  });
+
+  const cmj = monitoring.map((item) => {
+    let data = null;
+    if (item.hasOwnProperty("cmj")) {
+      data = {
+        date: item.date,
+        jump_height_max: item.performance.cmj.jump_height_max,
+        jump_height_average: item.performance.cmj.jump_height_average,
+      };
+    }
+    return data;
+  });
+
+  const stiffness_jump = monitoring.map((item) => {
+    let data = null;
+    if (item.hasOwnProperty("stiffness_jump")) {
+      data = {
+        date: item.date,
+        jump_height_max: item.performance.stiffness_jump.jump_height_max,
+        jump_height_average:
+          item.performance.stiffness_jump.jump_height_average,
+        rsi_max: item.performance.stiffness_jump.rsi_max,
+        rsi_average: item.performance.stiffness_jump.rsi_average,
+      };
+    }
+    return data;
+  });
 
   return (
     <div className="pb-10">
@@ -66,17 +67,37 @@ const MonitoringView = ({ monitoring }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="sleep_time" stroke="#E57373" />
-              <Line type="monotone" dataKey="sleep_quality" stroke="#BA68C8" />
-              <Line type="monotone" dataKey="fatigue" stroke="#7986CB" />
+              <Line
+                type="monotone"
+                dataKey="sleep_time"
+                stroke={Palette.red[3]}
+              />
+              <Line
+                type="monotone"
+                dataKey="sleep_quality"
+                stroke={Palette.pink[3]}
+              />
+              <Line
+                type="monotone"
+                dataKey="fatigue"
+                stroke={Palette.purple[3]}
+              />
               <Line
                 type="monotone"
                 dataKey="muscle_soreness"
-                stroke="#4FC3F7"
+                stroke={Palette.deep_purple[3]}
               />
-              <Line type="monotone" dataKey="stress_level" stroke="#4DD0E1" />
-              <Line type="monotone" dataKey="mood" stroke="#81C784" />
-              <Line type="monotone" dataKey="pain" stroke="#FFD54F" />
+              <Line
+                type="monotone"
+                dataKey="stress_level"
+                stroke={Palette.indigo[3]}
+              />
+              <Line type="monotone" dataKey="mood" stroke={Palette.blue[3]} />
+              <Line
+                type="monotone"
+                dataKey="pain"
+                stroke={Palette.light_blue[3]}
+              />
             </LineChart>
           </ResponsiveContainer>
         )}
@@ -94,12 +115,12 @@ const MonitoringView = ({ monitoring }) => {
               <Line
                 type="monotone"
                 dataKey="jump_height_max"
-                stroke="#E57373"
+                stroke={Palette.red[3]}
               />
               <Line
                 type="monotone"
                 dataKey="jump_height_average"
-                stroke="#BA68C8"
+                stroke={Palette.pink[3]}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -120,15 +141,23 @@ const MonitoringView = ({ monitoring }) => {
               <Line
                 type="monotone"
                 dataKey="jump_height_max"
-                stroke="#E57373"
+                stroke={Palette.red[3]}
               />
               <Line
                 type="monotone"
                 dataKey="jump_height_average"
-                stroke="#BA68C8"
+                stroke={Palette.pink[3]}
               />
-              <Line type="monotone" dataKey="rsi_max" stroke="#7986CB" />
-              <Line type="monotone" dataKey="rsi_average" stroke="#4FC3F7" />
+              <Line
+                type="monotone"
+                dataKey="rsi_max"
+                stroke={Palette.purple[3]}
+              />
+              <Line
+                type="monotone"
+                dataKey="rsi_average"
+                stroke={Palette.deep_purple[3]}
+              />
             </LineChart>
           </ResponsiveContainer>
         )}
