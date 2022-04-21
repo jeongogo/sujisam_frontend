@@ -1,205 +1,151 @@
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import Palette from "../../lib/styles/Palette";
 
 const PeriodicView = ({ periodic }) => {
   const fms = periodic.map((item) => {
-    let data = null;
-    if (item.injury_prevention.hasOwnProperty("fms")) {
-      data = {
-        date: item.date,
-        total_score: item.injury_prevention.fms.total_score,
-      };
-    }
+    let data = {
+      date: item.date,
+      total_score: item.injury_prevention.fms.total_score,
+    };
     return data;
   });
 
   const y_balance = periodic.map((item) => {
-    let data = null;
-    if (item.injury_prevention.hasOwnProperty("y_balance")) {
-      data = {
-        date: item.date,
-        composite_score_left:
-          item.injury_prevention.y_balance.composite_score_left,
-        composite_score_right:
-          item.injury_prevention.y_balance.composite_score_right,
-      };
-    }
+    let data = {
+      date: item.date,
+      composite_score_left:
+        item.injury_prevention.y_balance.composite_score_left,
+      composite_score_right:
+        item.injury_prevention.y_balance.composite_score_right,
+    };
     return data;
   });
 
   const tuck_jump = periodic.map((item) => {
-    let data = null;
-    if (item.injury_prevention.hasOwnProperty("tuck_jump")) {
-      data = {
-        date: item.date,
-        score: item.injury_prevention.tuck_jump.score,
-      };
-    }
+    let data = {
+      date: item.date,
+      score: item.injury_prevention.tuck_jump?.score,
+    };
     return data;
   });
 
   const isometric_test = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("isometric_test")) {
-      data = {
-        date: item.date,
-        max_force_left: item.performance_test.isometric_test.max_force_left,
-        max_force_right: item.performance_test.isometric_test.max_force_right,
-        max_force_difference:
-          item.performance_test.isometric_test.max_force_difference,
-        rfd_left: item.performance_test.isometric_test.rfd_left,
-        rfd_right: item.performance_test.isometric_test.rfd_right,
-        rfd_difference: item.performance_test.isometric_test.rfd_difference,
-      };
-    }
+    let data = {
+      date: item.date,
+      max_force_left: item.performance_test.isometric_test.max_force_left,
+      max_force_right: item.performance_test.isometric_test.max_force_right,
+      max_force_difference:
+        item.performance_test.isometric_test.max_force_difference,
+      rfd_left: item.performance_test.isometric_test.rfd_left,
+      rfd_right: item.performance_test.isometric_test.rfd_right,
+      rfd_difference: item.performance_test.isometric_test.rfd_difference,
+    };
     return data;
   });
 
   const three_pq_both_legs = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("three_pq_both_legs")) {
-      data = {
-        date: item.date,
-        max_force: item.performance_test.three_pq_both_legs.max_force,
-        max_power: item.performance_test.three_pq_both_legs.max_power,
-        average_peak_power:
-          item.performance_test.three_pq_both_legs.average_peak_power,
-        decrement: item.performance_test.three_pq_both_legs.decrement,
-      };
-    }
+    let data = {
+      date: item.date,
+      max_force: item.performance_test.three_pq_both_legs.max_force,
+      max_power: item.performance_test.three_pq_both_legs.max_power,
+      average_peak_power:
+        item.performance_test.three_pq_both_legs.average_peak_power,
+      decrement: item.performance_test.three_pq_both_legs.decrement,
+    };
     return data;
   });
 
   const stiffness_jump = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("stiffness_jump")) {
-      data = {
-        date: item.date,
-        jump_height_max: item.performance_test.stiffness_jump.jump_height_max,
-        jump_height_average:
-          item.performance_test.stiffness_jump.jump_height_average,
-        rsi_max: item.performance_test.stiffness_jump.rsi_max,
-        rsi_average: item.performance_test.stiffness_jump.rsi_average,
-      };
-    }
+    let data = {
+      date: item.date,
+      jump_height_max: item.performance_test.stiffness_jump?.jump_height_max,
+      jump_height_average:
+        item.performance_test.stiffness_jump?.jump_height_average,
+      rsi_max: item.performance_test.stiffness_jump?.rsi_max,
+      rsi_average: item.performance_test.stiffness_jump?.rsi_average,
+    };
     return data;
   });
 
   const standing_reach = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("standing_reach")) {
-      data = {
-        date: item.date,
-        base: item.performance_test.standing_reach.base,
-        touch: item.performance_test.standing_reach.touch,
-        height: item.performance_test.standing_reach.height,
-      };
-    }
+    let data = {
+      date: item.date,
+      base: item.performance_test.standing_reach.base,
+      touch: item.performance_test.standing_reach.touch,
+      height: item.performance_test.standing_reach.height,
+    };
     return data;
   });
 
   const cmj = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("cmj")) {
-      data = {
-        date: item.date,
-        base: item.performance_test.cmj.base,
-        touch: item.performance_test.cmj.touch,
-        reach_height: item.performance_test.cmj.reach_height,
-        jump_height: item.performance_test.cmj.jump_height,
-      };
-    }
+    let data = {
+      date: item.date,
+      base: item.performance_test.cmj.base,
+      touch: item.performance_test.cmj.touch,
+      reach_height: item.performance_test.cmj.reach_height,
+      jump_height: item.performance_test.cmj.jump_height,
+    };
     return data;
   });
 
   const maximal_jump = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("maximal_jump")) {
-      data = {
-        date: item.date,
-        base: item.performance_test.maximal_jump.base,
-        touch: item.performance_test.maximal_jump.touch,
-        reach_height: item.performance_test.maximal_jump.reach_height,
-      };
-    }
+    let data = {
+      date: item.date,
+      base: item.performance_test.maximal_jump.base,
+      touch: item.performance_test.maximal_jump.touch,
+      reach_height: item.performance_test.maximal_jump.reach_height,
+    };
     return data;
   });
 
   const pro_agility = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("pro_agility")) {
-      data = {
-        date: item.date,
-        planned_max: item.performance_test.pro_agility.planned_max,
-        reaction_max: item.performance_test.pro_agility.reaction_max,
-      };
-    }
+    let data = {
+      date: item.date,
+      planned_max: item.performance_test.pro_agility.planned_max,
+      reaction_max: item.performance_test.pro_agility.reaction_max,
+    };
     return data;
   });
 
   const ten_yard_dash = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("ten_yard_dash")) {
-      data = {
-        date: item.date,
-        result_max: item.performance_test.ten_yard_dash.result_max,
-      };
-    }
+    let data = {
+      date: item.date,
+      result_max: item.performance_test.ten_yard_dash.result_max,
+    };
     return data;
   });
 
   const reaction = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("reaction")) {
-      data = {
-        date: item.date,
-        result_max: item.performance_test.reaction.result_max,
-      };
-    }
+    let data = {
+      date: item.date,
+      result_max: item.performance_test.reaction.result_max,
+    };
     return data;
   });
 
   const pattern_jump = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("pattern_jump")) {
-      data = {
-        date: item.date,
-        sagittal_10s: item.performance_test.pattern_jump.sagittal_10s,
-        frontal_10s: item.performance_test.pattern_jump.frontal_10s,
-      };
-    }
+    let data = {
+      date: item.date,
+      sagittal_10s: item.performance_test.pattern_jump.sagittal_10s,
+      frontal_10s: item.performance_test.pattern_jump.frontal_10s,
+    };
     return data;
   });
 
   const push_up = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("push_up")) {
-      data = {
-        date: item.date,
-        time: item.performance_test.push_up.time,
-        repetiton: item.performance_test.push_up.repetiton,
-      };
-    }
+    let data = {
+      date: item.date,
+      time: item.performance_test.push_up.time,
+      repetiton: item.performance_test.push_up.repetiton,
+    };
     return data;
   });
 
   const medicine_ball_throwing = periodic.map((item) => {
-    let data = null;
-    if (item.performance_test.hasOwnProperty("medicine_ball_throwing")) {
-      data = {
-        date: item.date,
-        result_max: item.performance_test.medicine_ball_throwing.result_max,
-      };
-    }
+    let data = {
+      date: item.date,
+      result_max: item.performance_test.medicine_ball_throwing.result_max,
+    };
     return data;
   });
 
