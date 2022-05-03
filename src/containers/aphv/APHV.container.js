@@ -85,6 +85,10 @@ const APHVContainer = () => {
           <div>{result}</div>
         </div>
       }
+      <div className="mt-8">
+        <h3 className="text-lg">*APHV란?</h3>
+        <p className="mt-1 text-sm">Age at Peak Height Velocity의 약자로써 급격한 성장이 시작되는 시기를 의미합니다. 이 시기엔 근골격계의 빠른 변화가 일어남으로 스포츠 활동 시 부상의 위험이 증가되는 시기이니 안정하고 효율적인 스포츠 활동을 위해 적절한 트레이닝이 필요합니다. </p>
+      </div>
     </div>
   )
 }
