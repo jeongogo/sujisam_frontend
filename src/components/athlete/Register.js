@@ -37,20 +37,20 @@ const AthleteRegister = ({ onSubmit }) => {
                 {...register("gender", { required: true })}
                 type="radio"
                 className="ml-3"
-                value="남자"
+                value="남"
               />
               <label htmlFor="gender_mail" className="ml-1 cursor-pointer">
-                남자
+                남
               </label>
               <input
                 id="gender_femail"
                 {...register("gender", { required: true })}
                 type="radio"
                 className="ml-4"
-                value="여자"
+                value="여"
               />
               <label htmlFor="gender_femail" className="ml-1 cursor-pointer">
-                여자
+                여
               </label>
               {errors.gender && (
                 <div className="w-full mt-2 text-xs text-red-500">
@@ -65,7 +65,7 @@ const AthleteRegister = ({ onSubmit }) => {
             </label>
             <div className="w-full">
               <input
-                type="date"
+                type="text"
                 className="border-b border-gray-300 focus:border-yellow-400 outline-none w-full py-1 px-2"
                 {...register("birthday", { required: true })}
               />
@@ -82,13 +82,8 @@ const AthleteRegister = ({ onSubmit }) => {
               <input
                 type="text"
                 className="border-b border-gray-300 focus:border-yellow-400 outline-none w-full py-1 px-2"
-                {...register("career", { required: true })}
+                {...register("career")}
               />
-              {errors.career && (
-                <div className="w-full mt-2 text-xs text-red-500">
-                  필수 입력입니다.
-                </div>
-              )}
             </div>
           </li>
           <li className="flex items-start py-3">
@@ -122,7 +117,7 @@ const AthleteRegister = ({ onSubmit }) => {
             <div className="w-full pt-2">
               <input
                 id="dominance_hand_left"
-                {...register("dominance_hand", { required: true })}
+                {...register("dominance_hand")}
                 type="radio"
                 className="ml-3"
                 value="왼손"
@@ -135,7 +130,7 @@ const AthleteRegister = ({ onSubmit }) => {
               </label>
               <input
                 id="dominance_hand_right"
-                {...register("dominance_hand", { required: true })}
+                {...register("dominance_hand")}
                 type="radio"
                 className="ml-4"
                 value="오른손"
@@ -146,11 +141,6 @@ const AthleteRegister = ({ onSubmit }) => {
               >
                 오른손
               </label>
-              {errors.dominance_hand && (
-                <div className="w-full mt-2 text-xs text-red-500">
-                  필수 입력입니다.
-                </div>
-              )}
             </div>
           </li>
           <li className="flex items-start py-3">
@@ -158,7 +148,7 @@ const AthleteRegister = ({ onSubmit }) => {
             <div className="w-full pt-2">
               <input
                 id="dominance_leg_left"
-                {...register("dominance_leg", { required: true })}
+                {...register("dominance_leg")}
                 type="radio"
                 className="ml-3"
                 value="왼발"
@@ -171,7 +161,7 @@ const AthleteRegister = ({ onSubmit }) => {
               </label>
               <input
                 id="dominance_leg_right"
-                {...register("dominance_leg", { required: true })}
+                {...register("dominance_leg")}
                 type="radio"
                 className="ml-4"
                 value="오른발"
@@ -182,11 +172,6 @@ const AthleteRegister = ({ onSubmit }) => {
               >
                 오른발
               </label>
-              {errors.dominance_leg && (
-                <div className="w-full mt-2 text-xs text-red-500">
-                  필수 입력입니다.
-                </div>
-              )}
             </div>
           </li>
           <li className="flex items-start py-3">
@@ -195,13 +180,8 @@ const AthleteRegister = ({ onSubmit }) => {
               <input
                 type="text"
                 className="border-b border-gray-300 focus:border-yellow-400 outline-none w-full py-1 px-2"
-                {...register("team", { required: true })}
+                {...register("team")}
               />
-              {errors.team && (
-                <div className="w-full mt-2 text-xs text-red-500">
-                  필수 입력입니다.
-                </div>
-              )}
             </div>
           </li>
         </ul>

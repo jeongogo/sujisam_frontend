@@ -7,6 +7,7 @@ import SearchPage from "./pages/athlete/Search.page";
 import AthleteRegisterPage from "./pages/athlete/Register.page";
 import MeasureWritePage from "./pages/measure/Write.page";
 import MeasureViewPage from "./pages/measure/View.page";
+import APHVPage from "./pages/aphv/APHV.page";
 import "./tailwind.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/athletes/:id" element={<AthleteDetailPage />} />
           <Route path="/athletes/:id/write" element={<MeasureWritePage />} />
           <Route path="/athletes/:id/view" element={<MeasureViewPage />} />
+          <Route path="/aphv" element={<APHVPage />} />
         </Routes>
       </BrowserRouter>
     </div>

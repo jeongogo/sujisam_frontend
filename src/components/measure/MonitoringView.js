@@ -3,39 +3,34 @@ import Palette from "../../lib/styles/Palette";
 
 const MonitoringView = ({ monitoring }) => {
   const vas = monitoring.map((item) => {
-    let data = {
-      date: item.date,
-      sleep_time: item.vas.sleep_time,
-      sleep_quality: item.vas.sleep_quality,
-      fatigue: item.vas.fatigue,
-      muscle_soreness: item.vas.muscle_soreness,
-      stress_level: item.vas.stress_level,
-      mood: item.vas.mood,
-      pain: item.vas.pain,
+    return {
+      date: item?.date,
+      sleep_time: item?.vas?.sleep_time,
+      sleep_quality: item?.vas?.sleep_quality,
+      fatigue: item?.vas?.fatigue,
+      muscle_soreness: item?.vas?.muscle_soreness,
+      stress_level: item?.vas?.stress_level,
+      mood: item?.vas?.mood,
+      pain: item?.vas?.pain,
     };
-    return data;
   });
 
   const cmj = monitoring.map((item) => {
-    let data = null;
-      data = {
-        date: item.date,
-        jump_height_max: item.performance.cmj.jump_height_max,
-        jump_height_average: item.performance.cmj.jump_height_average,
-      };
-    return data;
+    return {
+      date: item?.date,
+      jump_height_max: item?.performance?.cmj?.jump_height_max,
+      jump_height_average: item?.performance?.cmj?.jump_height_average,
+    };
   });
 
   const stiffness_jump = monitoring.map((item) => {
-    let data = {
-      date: item.date,
-      jump_height_max: item.performance.stiffness_jump.jump_height_max,
-      jump_height_average:
-        item.performance.stiffness_jump.jump_height_average,
-      rsi_max: item.performance.stiffness_jump.rsi_max,
-      rsi_average: item.performance.stiffness_jump.rsi_average,
+    return {
+      date: item?.date,
+      jump_height_max: item?.performance?.stiffness_jump?.jump_height_max,
+      jump_height_average: item?.performance?.stiffness_jump?.jump_height_average,
+      rsi_max: item?.performance?.stiffness_jump?.rsi_max,
+      rsi_average: item?.performance?.stiffness_jump?.rsi_average,
     };
-    return data;
   });
 
   return (

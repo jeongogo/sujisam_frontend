@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const AthleteDetail = ({ athlete }) => {
   const {
+    _id,
     name,
     gender,
     birthday,
@@ -11,6 +13,7 @@ const AthleteDetail = ({ athlete }) => {
     dominance_leg,
     team,
   } = athlete;
+  
   return (
     <div className="py-10 pl-20 pr-20 bg-white shadow-3xl rounded-3xl">
       <ul>
@@ -48,24 +51,15 @@ const AthleteDetail = ({ athlete }) => {
         </li>
       </ul>
       <div className="flex justify-center mt-8">
-        <button
-          type="button"
-          className="w-40 h-12 mr-2 font-medium rounded-3xl bg-gray-200"
-        >
+        <Link to={`/athletes/${_id}/edit`} className="flex justify-center items-center w-40 h-12 mr-2 font-medium rounded-3xl bg-gray-200">
           수정하기
-        </button>
-        <button
-          type="button"
-          className="w-40 h-12 mr-2 font-medium rounded-3xl bg-yellow-400"
-        >
+        </Link>
+        <Link to={`/athletes/${_id}/view`} className="flex justify-center items-center w-40 h-12 mr-2 font-medium rounded-3xl bg-yellow-400">
           기록보기
-        </button>
-        <button
-          type="button"
-          className="w-40 h-12 font-medium rounded-3xl bg-yellow-400"
-        >
+        </Link>
+        <Link to={`/athletes/${_id}/write`} className="flex justify-center items-center w-40 h-12 font-medium rounded-3xl bg-yellow-400">
           측정하기
-        </button>
+        </Link>
       </div>
     </div>
   );

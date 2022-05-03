@@ -22,7 +22,7 @@ const AthletesContainer = () => {
   return (
     <div className="max-w-5xl m-auto py-16 relative">
       <div className="py-10 pl-12 pr-12 bg-white shadow-3xl rounded-3xl">
-        <table className="w-full">
+        <table className="w-full table-fixed">
           <thead>
             <tr>
               <th className="border-b py-3 font-midium" scope="col">
