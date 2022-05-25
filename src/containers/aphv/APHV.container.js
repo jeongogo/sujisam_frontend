@@ -93,7 +93,7 @@ const APHVContainer = () => {
   }
 
   return (
-    <div className="max-w-lg ml-auto mr-auto">
+    <div className="w-full px-4 pb-12 md:max-w-lg ml-auto mr-auto">
       <div className="flex items-center py-3">
         <label className="w-20 mr-8 text-right">성별</label>
         <div>
